@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotatkiOCR", "NotatkiOCR\NotatkiOCR.csproj", "{6232BDCD-A4BC-4092-B5A0-AD00C72C064F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6232BDCD-A4BC-4092-B5A0-AD00C72C064F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6232BDCD-A4BC-4092-B5A0-AD00C72C064F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6232BDCD-A4BC-4092-B5A0-AD00C72C064F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6232BDCD-A4BC-4092-B5A0-AD00C72C064F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
