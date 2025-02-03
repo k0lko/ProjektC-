@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NotatkiOCR")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5f0a27e26a7e41c7d00eeeb326d68b95999f6c26")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3fc9d9b507101b4f314f9e8e99368f507f67ba6d")]
 [assembly: System.Reflection.AssemblyProductAttribute("NotatkiOCR")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NotatkiOCR")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

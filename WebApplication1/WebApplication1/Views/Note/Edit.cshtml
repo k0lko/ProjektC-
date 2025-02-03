@@ -1,0 +1,60 @@
+﻿@model NoteApp.Models.Note
+
+<h2>Edytuj notatkę</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Title">Tytuł:</label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Content">Treść:</label>
+        <textarea asp-for="Content" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label>Obraz:</label>
+        <input type="file" id="imageUpload" name="image" accept="image/*" />
+        <button type="button" id="uploadButton" class="btn btn-secondary">Prześlij i wykonaj OCR</button>
+        <div id="ocrResult"></div>
+    </div>
+    <div id="imagesList">
+        @foreach (var image in Model.Images)
+        {
+            <input type="hidden" name="Images" value="@image.Replace("~/", "")" />
+            <img src="@Url.Content(image)" alt="Image" width="100" />
+        }
+    </div>
+
+    <button type="submit" class="btn btn-primary">Zapisz</button>
+    <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#uploadButton').click(function () {
+            var formData = new FormData();
+            formData.append('image', $('#imageUpload')[0].files[0]);
+
+            $.ajax({
+                url: '/Note/UploadImage',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $('#ocrResult').text('OCR: ' + data.ocrText);
+                    $('#Content').val($('#Content').val() + '\n' + data.ocrText);
+
+                    var imagesList = $('#imagesList');
+                    imagesList.append('<input type="hidden" name="Images" value="' + data.imageUrl.replace('~/', '') + '" />');
+                    imagesList.append('<img src="' + data.imageUrl.replace('~', '') + '" alt="Uploaded Image" width="100" />');
+                },
+                error: function (error) {
+                    $('#ocrResult').text('Błąd przesyłania obrazu.');
+                }
+            });
+        });
+    });
+</script>

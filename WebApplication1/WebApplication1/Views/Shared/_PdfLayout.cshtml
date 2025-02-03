@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css" /> @* Opcjonalnie: dodaj style specyficzne dla widoku PDF *@
+    <style>
+        /* Style dla kontenera PDF */
+        .pdf-container {
+            width: 100%;
+            height: 800px; /* Dostosuj wysokość */
+        }
+    </style>
+</head>
+<body>
+<div>
+    @RenderBody()
+</div>
+@RenderSection("Scripts", required: false)
+</body>
+</html>

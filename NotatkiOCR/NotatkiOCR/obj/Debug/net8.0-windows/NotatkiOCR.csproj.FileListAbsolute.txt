@@ -1,9 +1,15 @@
+C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\x86\leptonica-1.82.0.dll
+C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\x86\tesseract50.dll
+C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\x64\leptonica-1.82.0.dll
+C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\x64\tesseract50.dll
 C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\NotatkiOCR.exe
 C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\NotatkiOCR.deps.json
 C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\NotatkiOCR.runtimeconfig.json
 C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\NotatkiOCR.dll
 C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\NotatkiOCR.pdb
+C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\BouncyCastle.Cryptography.dll
 C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\Humanizer.dll
+C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\itextsharp.dll
 C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\Microsoft.Bcl.Cryptography.dll
 C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\Microsoft.Build.Locator.dll
@@ -83,6 +89,7 @@ C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-wi
 C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\System.Threading.AccessControl.dll
 C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\System.Web.Services.Description.dll
 C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\System.Windows.Extensions.dll
+C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\Tesseract.dll
 C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\cs\Microsoft.CodeAnalysis.resources.dll
 C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\de\Microsoft.CodeAnalysis.resources.dll
 C:\Users\mikol\RiderProjects\ProjektC-\NotatkiOCR\NotatkiOCR\bin\Debug\net8.0-windows\es\Microsoft.CodeAnalysis.resources.dll

@@ -1,0 +1,52 @@
+﻿@model List<NoteApp.Models.Note>
+
+<h2>Notatki</h2>
+
+<a asp-action="Create" class="btn btn-primary">Dodaj nową notatkę</a>
+
+@if (Model.Any())
+{
+    <ul class="note-list">
+        @foreach (var note in Model)
+        {
+            <li class="note-item">
+                <h3>@note.Title</h3>
+                <p>@note.Content</p>
+                <div class="button-group">
+                    <a asp-action="Edit" asp-route-id="@note.Id" class="btn btn-secondary">Edytuj</a>
+                    <a asp-action="Delete" asp-route-id="@note.Id" class="btn btn-danger">Usuń</a>
+                </div>
+                @if (note.Images.Any())
+                {
+                    <div class="image-group">
+                        @foreach (var image in note.Images)
+                        {
+                            <img src="@Url.Content(image)" alt="Image" width="100" class="note-image" />
+                        }
+                    </div>
+                }
+                @if (note.Links.Any())
+                {
+                    <div class="link-group">
+                        <p>Linki:</p>
+                        <ul>
+                            @foreach (var link in note.Links)
+                            {
+                                <li><a href="@link">@link</a></li>
+                            }
+                        </ul>
+                    </div>
+                }
+
+                @if (!string.IsNullOrEmpty(note.OcrText))
+                {
+                    <p>Tekst z OCR: @note.OcrText</p>
+                }
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Brak notatek.</p>
+}
