@@ -13,7 +13,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="wwwroot\uploads\" />
+      <Content Include="..\..\..\..\Desktop\main.c.txt">
+        <Link>Notes\main.c.txt</Link>
+      </Content>
     </ItemGroup>
 
 </Project>

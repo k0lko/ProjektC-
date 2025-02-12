@@ -1,0 +1,8 @@
+﻿{
+  "Id": 1,
+  "Title": "Pierwsza notatka",
+  "Content": "To jest przykładowa notatka testowa.",
+  "Images": ["/uploads/image1.jpg"],
+  "Links": ["https://example.com"],
+  "OcrText": "Przetworzony tekst OCR"
+}

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BxQi02t/pd5zNw/t2KICFN0tKwuEl6gs9i+exA2nn3I=",
+  "Hash": "/AnEG9EKRisXTW4BN+osOTfEXGM5PJLFloUC60dwMfQ=",
   "Source": "WebApplication1",
   "BasePath": "_content/WebApplication1",
   "Mode": "Default",
@@ -1231,6 +1231,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\scala.ico"
+    },
+    {
+      "Identity": "C:\\Users\\mikol\\RiderProjects\\ProjektC-\\WebApplication1\\WebApplication1\\wwwroot\\uploads\\code1.png",
+      "SourceId": "WebApplication1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mikol\\RiderProjects\\ProjektC-\\WebApplication1\\WebApplication1\\wwwroot\\",
+      "BasePath": "_content/WebApplication1",
+      "RelativePath": "uploads/code1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\code1.png"
+    },
+    {
+      "Identity": "C:\\Users\\mikol\\RiderProjects\\ProjektC-\\WebApplication1\\WebApplication1\\wwwroot\\uploads\\code2.png",
+      "SourceId": "WebApplication1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\mikol\\RiderProjects\\ProjektC-\\WebApplication1\\WebApplication1\\wwwroot\\",
+      "BasePath": "_content/WebApplication1",
+      "RelativePath": "uploads/code2.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\code2.png"
     }
   ]
 }

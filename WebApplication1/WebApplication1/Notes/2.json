@@ -1,0 +1,8 @@
+﻿{
+  "Id": 2,
+  "Title": "Druga notatka",
+  "Content": "Kolejna notatka do testów. Sprawdź czy się ładuje.",
+  "Images": [],
+  "Links": ["https://google.com"],
+  "OcrText": "OCR nie wykrył tekstu."
+}

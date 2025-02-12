@@ -106,3 +106,5 @@ C:\Users\mikol\RiderProjects\ProjektC-\WebApplication1\WebApplication1\obj\Debug
 C:\Users\mikol\RiderProjects\ProjektC-\WebApplication1\WebApplication1\obj\Debug\net8.0\WebAppli.7D14BD69.Up2Date
 C:\Users\mikol\RiderProjects\ProjektC-\WebApplication1\WebApplication1\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\mikol\RiderProjects\ProjektC-\WebApplication1\WebApplication1\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\mikol\RiderProjects\ProjektC-\WebApplication1\WebApplication1\bin\Debug\net8.0\Notes\1.json
+C:\Users\mikol\RiderProjects\ProjektC-\WebApplication1\WebApplication1\bin\Debug\net8.0\Notes\2.json

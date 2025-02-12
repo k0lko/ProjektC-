@@ -22,12 +22,15 @@ namespace NoteApp.Services
             _notesFolderPath = Path.Combine(_environment.ContentRootPath, "Notes");
             Directory.CreateDirectory(_notesFolderPath);
             LoadNotes();
+            EnsureDummyData();
         }
 
         public List<Note> GetAllNotes()
         {
+            Console.WriteLine($"Zwracanie { _notes.Count } notatek.");
             return _notes;
         }
+
 
         public Note GetNoteById(int id)
         {
@@ -69,15 +72,11 @@ namespace NoteApp.Services
         {
             try
             {
-                using (var engine = new TesseractEngine(@"./tessdata", "pol", EngineMode.Default)) // Correct way
+                using (var engine = new TesseractEngine("./tessdata", "pol", EngineMode.Default))
+                using (var img = Pix.LoadFromFile(imagePath))
+                using (var page = engine.Process(img))
                 {
-                    using (var img = Pix.LoadFromFile(imagePath))
-                    {
-                        using (var page = engine.Process(img))
-                        {
-                            return page.GetText();
-                        }
-                    }
+                    return page.GetText();
                 }
             }
             catch (Exception ex)
@@ -87,36 +86,48 @@ namespace NoteApp.Services
             }
         }
 
-
         public void LoadNotes()
         {
             _notes.Clear();
-            if (Directory.Exists(_notesFolderPath)) // Check if the directory exists
+            Console.WriteLine($"Ładowanie notatek z folderu: {_notesFolderPath}");
+
+            if (Directory.Exists(_notesFolderPath))
             {
-                foreach (var filePath in Directory.GetFiles(_notesFolderPath, "*.json"))
+                var files = Directory.GetFiles(_notesFolderPath, "*.json");
+                Console.WriteLine($"Znaleziono plików: {files.Length}");
+
+                foreach (var filePath in files)
                 {
                     try
                     {
+                        Console.WriteLine($"Wczytywanie pliku: {filePath}");
                         string json = File.ReadAllText(filePath);
                         var note = JsonConvert.DeserializeObject<Note>(json);
-                        if (note != null) // Check for null after deserialization
+
+                        if (note != null)
                         {
                             _notes.Add(note);
+                            Console.WriteLine($"Dodano notatkę: {note.Title}");
                         }
                         else
                         {
-                           Console.WriteLine($"Error deserializing note from file: {filePath}");
+                            Console.WriteLine($"Błąd deserializacji: {filePath}");
                         }
-
                     }
                     catch (Exception ex)
                     {
-                         Console.WriteLine($"Error loading note from file: {filePath}: {ex.Message}");
+                        Console.WriteLine($"Błąd wczytywania pliku {filePath}: {ex.Message}");
                     }
                 }
             }
+            else
+            {
+                Console.WriteLine("Folder z notatkami nie istnieje.");
+            }
+
             _nextId = _notes.Any() ? _notes.Max(n => n.Id) + 1 : 1;
         }
+
 
         private void SaveNote(Note note)
         {
@@ -124,11 +135,11 @@ namespace NoteApp.Services
             string json = JsonConvert.SerializeObject(note, Formatting.Indented);
             try
             {
-               File.WriteAllText(filePath, json);
+                File.WriteAllText(filePath, json);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error saving note to file: {filePath}: {ex.Message}");
+                Console.WriteLine($"Error saving note to file {filePath}: {ex.Message}");
             }
         }
 
@@ -137,13 +148,37 @@ namespace NoteApp.Services
             string filePath = Path.Combine(_notesFolderPath, $"{noteId}.json");
             if (File.Exists(filePath))
             {
-                try{
+                try
+                {
                     File.Delete(filePath);
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Error deleting note file: {filePath}: {ex.Message}");
+                    Console.WriteLine($"Error deleting note file {filePath}: {ex.Message}");
                 }
+            }
+        }
+
+        private void EnsureDummyData()
+        {
+            if (!_notes.Any())
+            {
+                Console.WriteLine("Brak notatek. Tworzenie przykładowych...");
+
+                var sampleNotes = new List<Note>
+                {
+                    new Note { Id = 1, Title = "Pierwsza notatka", Content = "To jest przykładowa notatka testowa.", Images = new List<string> { "/uploads/image1.jpg" }, Links = new List<string> { "https://example.com" }, OcrText = "Przetworzony tekst OCR" },
+                    new Note { Id = 2, Title = "Druga notatka", Content = "Kolejna notatka do testów. Sprawdź czy się ładuje.", Images = new List<string>(), Links = new List<string> { "https://google.com" }, OcrText = "OCR nie wykrył tekstu." },
+                    new Note { Id = 3, Title = "Notatka o kodowaniu", Content = "Kodowanie w .NET jest super! 🖥️", Images = new List<string> { "/uploads/code1.png", "/uploads/code2.png" }, Links = new List<string> { "https://learn.microsoft.com/en-us/dotnet/" }, OcrText = "Kodowanie jest super!" }
+                };
+
+                foreach (var note in sampleNotes)
+                {
+                    SaveNote(note);
+                    _notes.Add(note);
+                }
+
+                Console.WriteLine("Przykładowe notatki dodane.");
             }
         }
     }

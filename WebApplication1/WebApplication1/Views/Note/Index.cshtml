@@ -7,38 +7,61 @@
 
 <h2>Notatki</h2>
 
+<div class="search-container">
+    <input type="text" id="search-box" placeholder="Wyszukaj notatki...">
+</div>
+
 <a asp-action="Create" class="btn btn-primary">Dodaj nową notatkę</a>
 
-<div id="notes-container">
-    </div>
+<div id="notes-container"></div>
 
 @section Scripts {
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> @* Upewnij się, że jQuery jest załączone *@
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
         $(document).ready(function () {
             loadNotes();
+
+            // Dynamiczne wyszukiwanie notatek
+            $("#search-box").on("input", function () {
+                var searchTerm = $(this).val();
+                searchNotes(searchTerm);
+            });
         });
 
         function loadNotes() {
             $.ajax({
-                url: '/Note/GetNotes', // URL zgodny z atrybutem [Route] i nazwą akcji
+                url: '/Note/GetNotes',
                 type: 'GET',
                 dataType: 'json',
                 success: function (data) {
-                    console.log(data);
                     renderNotes(data);
                 },
                 error: function (error) {
-                    console.error("Error fetching notes:", error);
+                    console.error("Błąd pobierania notatek:", error);
                     $("#notes-container").html("<p>Błąd ładowania notatek.</p>");
                 }
             });
         }
 
+        function searchNotes(searchTerm) {
+            $.ajax({
+                url: '/Note/SearchNotes',
+                type: 'GET',
+                data: { searchTerm: searchTerm },
+                dataType: 'json',
+                success: function (data) {
+                    renderNotes(data);
+                },
+                error: function (error) {
+                    console.error("Błąd wyszukiwania:", error);
+                }
+            });
+        }
+
         function renderNotes(notes) {
-            console.log(notes);
             var notesContainer = $("#notes-container");
-            notesContainer.empty(); // Wyczyść poprzednie notatki
+            notesContainer.empty();
 
             if (notes.length === 0) {
                 notesContainer.html("<p>Brak notatek.</p>");
@@ -54,10 +77,9 @@
                 noteItem.append("<p>" + note.content + "</p>");
 
                 var buttonGroup = $("<div>").addClass("button-group");
-                buttonGroup.append("<a href='/Note/Edit/" + note.id + "' class='btn btn-secondary'>Edytuj</a>"); // Poprawione linki
-                buttonGroup.append("<a href='/Note/Delete/" + note.id + "' class='btn btn-danger'>Usuń</a>"); // Poprawione linki
+                buttonGroup.append("<a href='/Note/Edit/" + note.id + "' class='btn btn-secondary'>Edytuj</a>");
+                buttonGroup.append("<a href='/Note/Delete/" + note.id + "' class='btn btn-danger'>Usuń</a>");
                 noteItem.append(buttonGroup);
-
 
                 if (note.images && note.images.length > 0) {
                     var imageGroup = $("<div>").addClass("image-group");
@@ -79,11 +101,72 @@
                 }
 
                 if (note.ocrText) {
-                    noteItem.append("<p>Tekst z OCR: " + note.ocrText + "</p>");
+                    noteItem.append("<p><strong>Tekst z OCR:</strong> " + note.ocrText + "</p>");
                 }
 
                 noteList.append(noteItem);
             });
         }
     </script>
+
+    <style>
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        #search-box {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .note-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .note-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .button-group {
+            margin-top: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 12px;
+            margin-right: 5px;
+            text-decoration: none;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .image-group {
+            margin-top: 10px;
+        }
+
+        .note-image {
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+    </style>
 }
