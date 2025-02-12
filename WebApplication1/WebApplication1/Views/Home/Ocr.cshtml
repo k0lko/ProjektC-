@@ -1,0 +1,76 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "OCR";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="ocr-container">
+
+    <div class="form-group">
+        <label for="imageUpload">Wybierz obraz:</label>
+        <input type="file" id="imageUpload" name="image" accept="image/*" class="form-control-file" />
+        <button type="button" id="uploadButton" class="btn btn-primary mt-2">Prześlij i wykonaj OCR</button>
+        <div id="ocrResult" class="mt-2"></div>
+    </div>
+
+    <div id="extractedText" style="display: none;" class="mt-4">
+        <h3>Wyekstrahowany tekst:</h3>
+        <textarea id="ocrTextarea" class="form-control" rows="10"></textarea>
+        <button type="button" id="copyButton" class="btn btn-info mt-2">Kopiuj tekst</button>
+        <button type="button" id="createNoteButton" class="btn btn-success mt-2">Dodaj do notatek</button> @* Przycisk "Dodaj do notatek" *@
+    </div>
+
+    <a asp-controller="Note" asp-action="Index" class="btn btn-secondary mt-3">Powrót do listy notatek</a>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#uploadButton').click(function () {
+                var formData = new FormData();
+                formData.append('image', $('#imageUpload')[0].files[0]);
+
+                $.ajax({
+                    url: '@Url.Action("UploadImage", "Note")',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        $('#ocrTextarea').val(data.ocrText);
+                        $('#extractedText').show();
+                    },
+                    error: function (error) {
+                        $('#ocrResult').text('Błąd przesyłania obrazu.');
+                        $('#extractedText').hide();
+                    }
+                });
+            });
+
+            $('#copyButton').click(function() {
+                $('#ocrTextarea').select();
+                document.execCommand('copy');
+                alert('Tekst skopiowany do schowka!');
+            });
+
+            $('#createNoteButton').click(function() {
+                var ocrText = $('#ocrTextarea').val();
+                // Zapisz ocrText do TempData *bezpośrednio* w JavaScript (używając Razor)
+                $.ajax({
+                    url: '@Url.Action("SaveOcrText", "Note")',  // Nowa akcja!
+                    type: 'POST',
+                    data: { ocrText: ocrText },  // Przekaż tekst jako parametr
+                    success: function (data) {
+                        window.location.href = '@Url.Action("Create", "Note")'; // Przekierowanie *po* zapisaniu
+                    },
+                    error: function() {
+                        alert("Błąd zapisu tekstu OCR.");
+                    }
+                });
+
+            });
+        });
+    </script>
+}

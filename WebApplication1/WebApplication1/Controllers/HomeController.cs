@@ -8,17 +8,22 @@ namespace WebApplication1.Controllers // Zmień na odpowiednią przestrzeń nazw
         {
             return View();
         }
-        
+
         public IActionResult Privacy()
         {
             return View();
         }
-        
+
         public IActionResult Documentation()
         {
             return View("Documentation"); // Zakładam, że widok będzie się nazywał "Documentation.cshtml"
         }
+
+        public IActionResult Ocr()
+        {
+            return View("Ocr");
+        }
+
+
     }
-    
-    
 }

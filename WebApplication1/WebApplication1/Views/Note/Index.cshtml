@@ -1,52 +1,89 @@
 ﻿@model List<NoteApp.Models.Note>
 
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Notatki";
+}
+
 <h2>Notatki</h2>
 
 <a asp-action="Create" class="btn btn-primary">Dodaj nową notatkę</a>
 
-@if (Model.Any())
-{
-    <ul class="note-list">
-        @foreach (var note in Model)
-        {
-            <li class="note-item">
-                <h3>@note.Title</h3>
-                <p>@note.Content</p>
-                <div class="button-group">
-                    <a asp-action="Edit" asp-route-id="@note.Id" class="btn btn-secondary">Edytuj</a>
-                    <a asp-action="Delete" asp-route-id="@note.Id" class="btn btn-danger">Usuń</a>
-                </div>
-                @if (note.Images.Any())
-                {
-                    <div class="image-group">
-                        @foreach (var image in note.Images)
-                        {
-                            <img src="@Url.Content(image)" alt="Image" width="100" class="note-image" />
-                        }
-                    </div>
+<div id="notes-container">
+    </div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> @* Upewnij się, że jQuery jest załączone *@
+    <script>
+        $(document).ready(function () {
+            loadNotes();
+        });
+
+        function loadNotes() {
+            $.ajax({
+                url: '/Note/GetNotes', // URL zgodny z atrybutem [Route] i nazwą akcji
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    renderNotes(data);
+                },
+                error: function (error) {
+                    console.error("Error fetching notes:", error);
+                    $("#notes-container").html("<p>Błąd ładowania notatek.</p>");
                 }
-                @if (note.Links.Any())
-                {
-                    <div class="link-group">
-                        <p>Linki:</p>
-                        <ul>
-                            @foreach (var link in note.Links)
-                            {
-                                <li><a href="@link">@link</a></li>
-                            }
-                        </ul>
-                    </div>
+            });
+        }
+
+        function renderNotes(notes) {
+            console.log(notes);
+            var notesContainer = $("#notes-container");
+            notesContainer.empty(); // Wyczyść poprzednie notatki
+
+            if (notes.length === 0) {
+                notesContainer.html("<p>Brak notatek.</p>");
+                return;
+            }
+
+            var noteList = $("<ul>").addClass("note-list");
+            notesContainer.append(noteList);
+
+            $.each(notes, function (index, note) {
+                var noteItem = $("<li>").addClass("note-item");
+                noteItem.append("<h3>" + note.title + "</h3>");
+                noteItem.append("<p>" + note.content + "</p>");
+
+                var buttonGroup = $("<div>").addClass("button-group");
+                buttonGroup.append("<a href='/Note/Edit/" + note.id + "' class='btn btn-secondary'>Edytuj</a>"); // Poprawione linki
+                buttonGroup.append("<a href='/Note/Delete/" + note.id + "' class='btn btn-danger'>Usuń</a>"); // Poprawione linki
+                noteItem.append(buttonGroup);
+
+
+                if (note.images && note.images.length > 0) {
+                    var imageGroup = $("<div>").addClass("image-group");
+                    $.each(note.images, function (i, image) {
+                        imageGroup.append("<img src='" + image + "' alt='Image' width='100' class='note-image' />");
+                    });
+                    noteItem.append(imageGroup);
                 }
 
-                @if (!string.IsNullOrEmpty(note.OcrText))
-                {
-                    <p>Tekst z OCR: @note.OcrText</p>
+                if (note.links && note.links.length > 0) {
+                    var linkGroup = $("<div>").addClass("link-group");
+                    linkGroup.append("<p>Linki:</p>");
+                    var linkList = $("<ul>");
+                    $.each(note.links, function (l, link) {
+                        linkList.append("<li><a href='" + link + "'>" + link + "</a></li>");
+                    });
+                    linkGroup.append(linkList);
+                    noteItem.append(linkGroup);
                 }
-            </li>
+
+                if (note.ocrText) {
+                    noteItem.append("<p>Tekst z OCR: " + note.ocrText + "</p>");
+                }
+
+                noteList.append(noteItem);
+            });
         }
-    </ul>
-}
-else
-{
-    <p>Brak notatek.</p>
+    </script>
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4TbsnlcSVloIUtP1UazoWJ2n6TQQKZHlWDR9YiSJm0E=",
+  "Hash": "BxQi02t/pd5zNw/t2KICFN0tKwuEl6gs9i+exA2nn3I=",
   "Source": "WebApplication1",
   "BasePath": "_content/WebApplication1",
   "Mode": "Default",
@@ -1231,25 +1231,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\scala.ico"
-    },
-    {
-      "Identity": "C:\\Users\\mikol\\RiderProjects\\ProjektC-\\WebApplication1\\WebApplication1\\wwwroot\\uploads\\02ed7896-3dfc-4e5e-9b5f-59680e5fb076_462335186_1263124841697731_7705584793940466055_n.jpg",
-      "SourceId": "WebApplication1",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\mikol\\RiderProjects\\ProjektC-\\WebApplication1\\WebApplication1\\wwwroot\\",
-      "BasePath": "_content/WebApplication1",
-      "RelativePath": "uploads/02ed7896-3dfc-4e5e-9b5f-59680e5fb076_462335186_1263124841697731_7705584793940466055_n.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\02ed7896-3dfc-4e5e-9b5f-59680e5fb076_462335186_1263124841697731_7705584793940466055_n.jpg"
     }
   ]
 }

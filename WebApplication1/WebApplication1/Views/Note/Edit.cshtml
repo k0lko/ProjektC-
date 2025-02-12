@@ -1,5 +1,10 @@
 ﻿@model NoteApp.Models.Note
 
+@{
+    Layout = "_Layout";  // Upewnij się, że używasz layoutu
+    ViewData["Title"] = "Edycja"; // Ustaw tytuł strony
+}
+
 <h2>Edytuj notatkę</h2>
 
 <form asp-action="Edit" method="post">

@@ -253,10 +253,6 @@
       "PackagePath": "staticwebassets\\scala.ico"
     },
     {
-      "Id": "C:\\Users\\mikol\\RiderProjects\\ProjektC-\\WebApplication1\\WebApplication1\\wwwroot\\uploads\\02ed7896-3dfc-4e5e-9b5f-59680e5fb076_462335186_1263124841697731_7705584793940466055_n.jpg",
-      "PackagePath": "staticwebassets\\uploads\\02ed7896-3dfc-4e5e-9b5f-59680e5fb076_462335186_1263124841697731_7705584793940466055_n.jpg"
-    },
-    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.WebApplication1.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

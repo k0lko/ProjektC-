@@ -69,7 +69,7 @@ namespace NoteApp.Services
         {
             try
             {
-                using (var engine = new TesseractEngine(@"./tessdata", "pol", EngineMode.Default))
+                using (var engine = new TesseractEngine(@"./tessdata", "pol", EngineMode.Default)) // Correct way
                 {
                     using (var img = Pix.LoadFromFile(imagePath))
                     {
@@ -80,20 +80,40 @@ namespace NoteApp.Services
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine($"OCR Error: {ex.Message}");
                 return "OCR failed.";
             }
         }
 
+
         public void LoadNotes()
         {
             _notes.Clear();
-            foreach (var filePath in Directory.GetFiles(_notesFolderPath, "*.json"))
+            if (Directory.Exists(_notesFolderPath)) // Check if the directory exists
             {
-                string json = File.ReadAllText(filePath);
-                var note = JsonConvert.DeserializeObject<Note>(json);
-                _notes.Add(note);
+                foreach (var filePath in Directory.GetFiles(_notesFolderPath, "*.json"))
+                {
+                    try
+                    {
+                        string json = File.ReadAllText(filePath);
+                        var note = JsonConvert.DeserializeObject<Note>(json);
+                        if (note != null) // Check for null after deserialization
+                        {
+                            _notes.Add(note);
+                        }
+                        else
+                        {
+                           Console.WriteLine($"Error deserializing note from file: {filePath}");
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                         Console.WriteLine($"Error loading note from file: {filePath}: {ex.Message}");
+                    }
+                }
             }
             _nextId = _notes.Any() ? _notes.Max(n => n.Id) + 1 : 1;
         }
@@ -102,7 +122,14 @@ namespace NoteApp.Services
         {
             string filePath = Path.Combine(_notesFolderPath, $"{note.Id}.json");
             string json = JsonConvert.SerializeObject(note, Formatting.Indented);
-            File.WriteAllText(filePath, json);
+            try
+            {
+               File.WriteAllText(filePath, json);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error saving note to file: {filePath}: {ex.Message}");
+            }
         }
 
         private void DeleteNoteFile(int noteId)
@@ -110,7 +137,13 @@ namespace NoteApp.Services
             string filePath = Path.Combine(_notesFolderPath, $"{noteId}.json");
             if (File.Exists(filePath))
             {
-                File.Delete(filePath);
+                try{
+                    File.Delete(filePath);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error deleting note file: {filePath}: {ex.Message}");
+                }
             }
         }
     }

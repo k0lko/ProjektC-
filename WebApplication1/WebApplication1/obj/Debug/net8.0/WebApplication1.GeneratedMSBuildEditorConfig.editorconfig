@@ -18,12 +18,12 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\mikol\RiderProjects\ProjektC-\WebApplication1\WebApplication1
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/mikol/RiderProjects/ProjektC-/WebApplication1/WebApplication1/Views/Home/Documentation.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEb2N1bWVudGF0aW9uLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/mikol/RiderProjects/ProjektC-/WebApplication1/WebApplication1/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mikol/RiderProjects/ProjektC-/WebApplication1/WebApplication1/Views/Home/Ocr.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxPY3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/mikol/RiderProjects/ProjektC-/WebApplication1/WebApplication1/Views/Home/Privacy.cshtml]
